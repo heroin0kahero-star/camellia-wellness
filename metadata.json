@@ -1,0 +1,8 @@
+{
+  "name": "Camellia Cosmetics & Wellness Centre",
+  "description": "A luxury aesthetics, skin, laser, hair restoration, and wellness institute in Vignan Nagar, Bengaluru.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

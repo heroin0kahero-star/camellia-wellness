@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Camellia Cosmetics &amp; Wellness Centre | Vignan Nagar, Bengaluru</title>
+    <meta
+      name="description"
+      content="Discover a more considered approach to beauty, skin care, laser hair reduction, hair restoration, and body wellness at Camellia Cosmetics & Wellness Centre in Vignan Nagar, Bengaluru."
+    />
+    <meta property="og:title" content="Camellia Cosmetics & Wellness Centre | Vignan Nagar, Bengaluru" />
+    <meta
+      property="og:description"
+      content="Modern Heritage Aesthetics in Vignan Nagar, Bengaluru — Skin & Face, Laser Hair Reduction, Hair Restoration, and Body & Wellness consultations."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Camellia Cosmetics & Wellness Centre" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#F6F1E9" />
+
+    <!--
+      Logo intro loader.
+      SHOW_ONCE_PER_SESSION is false so the intro replays on every page load / refresh.
+      The MP4 is preloaded by the <video preload="auto"> element in <body>;
+      the WebM fallback and still PNG are never preloaded.
+    -->
+    <script>
+      (function () {
+        var SHOW_ONCE_PER_SESSION = false;
+        var STORAGE_KEY = 'camellia-logo-intro:seen';
+        var show = true;
+
+        if (SHOW_ONCE_PER_SESSION) {
+          try {
+            show = sessionStorage.getItem(STORAGE_KEY) !== '1';
+            if (show) {
+              sessionStorage.setItem(STORAGE_KEY, '1');
+            }
+          } catch (error) {
+            show = true;
+          }
+        }
+
+        document.documentElement.setAttribute('data-camellia-intro', show ? 'show' : 'skip');
+      }());
+    </script>
+    <style id="camellia-intro-critical-styles">
+      html[data-camellia-intro='show'],
+      html[data-camellia-intro='show'] body {
+        overflow: hidden;
+      }
+
+      #camellia-logo-intro {
+        position: fixed;
+        inset: 0;
+        z-index: 2147483647;
+        display: grid;
+        place-items: center;
+        background: #ffffff;
+        opacity: 1;
+        transition: opacity 500ms ease;
+      }
+
+      html[data-camellia-intro='skip'] #camellia-logo-intro {
+        display: none;
+      }
+
+      #camellia-logo-intro.is-hiding {
+        opacity: 0;
+      }
+
+      #camellia-logo-intro-video,
+      #camellia-logo-intro-still {
+        display: block;
+        width: min(78vw, 720px);
+        height: auto;
+        max-width: none;
+        border: 0;
+        outline: none;
+        box-shadow: none;
+        background: #ffffff;
+      }
+
+      #camellia-logo-intro-still[hidden] {
+        display: none;
+      }
+    </style>
+    <noscript>
+      <style>
+        #camellia-logo-intro {
+          display: none !important;
+        }
+      </style>
+    </noscript>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <div id="camellia-logo-intro" aria-hidden="true">
+      <video
+        id="camellia-logo-intro-video"
+        autoplay
+        muted
+        playsinline
+        preload="auto"
+        tabindex="-1"
+      >
+        <source
+          id="camellia-logo-intro-source"
+          src="/assets/intro/camellia-logo-intro.mp4"
+          type="video/mp4"
+        />
+      </video>
+    </div>
+
+    <script>
+      (function () {
+        var overlay = document.getElementById('camellia-logo-intro');
+        var video = document.getElementById('camellia-logo-intro-video');
+        var source = document.getElementById('camellia-logo-intro-source');
+        var root = document.getElementById('root');
+
+        if (!overlay || !video || !source) {
+          return;
+        }
+
+        function unlockAndRemove() {
+          overlay.remove();
+          if (root) {
+            root.removeAttribute('inert');
+          }
+          document.documentElement.setAttribute('data-camellia-intro', 'done');
+        }
+
+        if (document.documentElement.getAttribute('data-camellia-intro') !== 'show') {
+          unlockAndRemove();
+          return;
+        }
+
+        if (root) {
+          root.setAttribute('inert', '');
+        }
+
+        var still = document.createElement('img');
+        still.id = 'camellia-logo-intro-still';
+        still.src = '/assets/intro/camellia-logo-final.png';
+        still.alt = '';
+        still.hidden = true;
+        overlay.appendChild(still);
+
+        var started = false;
+        var finished = false;
+        var fallbackShown = false;
+        var startTimer;
+        var holdTimer;
+        var fadeTimer;
+        var hardTimer;
+
+        function clearTimers() {
+          window.clearTimeout(startTimer);
+          window.clearTimeout(holdTimer);
+          window.clearTimeout(fadeTimer);
+          window.clearTimeout(hardTimer);
+        }
+
+        function removeNow() {
+          if (finished) {
+            return;
+          }
+          finished = true;
+          clearTimers();
+          unlockAndRemove();
+        }
+
+        function fadeOut() {
+          if (finished) {
+            return;
+          }
+          clearTimers();
+          window.clearTimeout(fadeTimer);
+          overlay.classList.add('is-hiding');
+          fadeTimer = window.setTimeout(removeNow, 500);
+        }
+
+        function showStillThenFade() {
+          if (finished || fallbackShown) {
+            return;
+          }
+          fallbackShown = true;
+          window.clearTimeout(startTimer);
+          try {
+            video.pause();
+          } catch (error) {}
+          video.style.display = 'none';
+          still.hidden = false;
+          holdTimer = window.setTimeout(fadeOut, 800);
+        }
+
+        hardTimer = window.setTimeout(removeNow, 6000);
+
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          video.style.display = 'none';
+          still.hidden = false;
+          holdTimer = window.setTimeout(removeNow, 800);
+          return;
+        }
+
+        startTimer = window.setTimeout(function () {
+          if (!started) {
+            showStillThenFade();
+          }
+        }, 1500);
+
+        video.addEventListener('playing', function () {
+          started = true;
+          window.clearTimeout(startTimer);
+        });
+
+        video.addEventListener('ended', function () {
+          started = true;
+          window.clearTimeout(startTimer);
+          holdTimer = window.setTimeout(fadeOut, 250);
+        });
+
+        video.addEventListener('error', showStillThenFade);
+        source.addEventListener('error', showStillThenFade);
+
+        var playResult = video.play();
+        if (playResult && typeof playResult.catch === 'function') {
+          playResult.catch(function () {
+            window.setTimeout(function () {
+              if (!started) {
+                showStillThenFade();
+              }
+            }, 250);
+          });
+        }
+      }());
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+:root {
+  --color-ivory: #F6F1E9;
+  --color-ivory-elevated: #FAF7F2;
+  --color-burgundy: #3B252B;
+  --color-burgundy-hover: #2C1B20;
+  --color-olive: #737C67;
+  --color-logo-sage: #7BA34B;
+  --color-champagne: #B69A70;
+  --color-ink: #25221F;
+  --color-ink-muted: #5C554E;
+  --color-blush: #E9DCD5;
+  --color-hairline: rgba(37, 34, 31, 0.12);
+  --color-hairline-light: rgba(246, 241, 233, 0.18);
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+    overflow-x: hidden;
+    line-height: 1.65;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  .font-mono-index {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  ::selection {
+    background-color: var(--color-blush);
+    color: var(--color-burgundy);
+  }
+}
+
+/* Seamless ivory blend for uploaded white-ground Camellia logo */
+.logo-ivory-blend {
+  mix-blend-mode: multiply;
+}
+
+/* Seamless dark-footer blend for uploaded white-ground Camellia logo */
+.logo-footer-blend {
+  filter: url(#camellia-logo-knockout);
+}
+
+/* Accessible focus outlines */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-burgundy);
+  outline-offset: 2px;
+}
+
+/* Editorial hairline divider */
+.hairline-rule {
+  height: 1px;
+  background-color: var(--color-hairline);
+}
+
+/* Subtle archival frame border */
+.editorial-frame {
+  border: 1px solid var(--color-hairline);
+}
+
+/* Respect reduced motion globally */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
